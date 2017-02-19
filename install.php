@@ -15,4 +15,4 @@
 // License along with this file. If not, see
 // <http://www.gnu.org/licenses/>
 require_once __DIR__ . '/vendor/autoload.php';
-(new \Vaskovsky\WebApplicationExample\InstallPage)->show();
+(new \AVaskovsky\WebApplicationExample\InstallPage)->show();

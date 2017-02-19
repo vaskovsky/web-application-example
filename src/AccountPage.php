@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this file. If not, see
 // <http://www.gnu.org/licenses/>
-namespace Vaskovsky\WebApplicationExample;
+namespace AVaskovsky\WebApplicationExample;
 /**
  * The account management page.
  *
- * @extends Vaskovsky::WebApplication::CatalogPage
+ * @extends AVaskovsky::WebApplication::CatalogPage
  *
  * @author Alexey Vaskovsky
  */
-class AccountPage extends Page
+class AccountPage extends ApplicationPage
 {
 	/**
-	 * @copydoc Vaskovsky::WebApplication::Page#getRole()
+	 * @copydoc AVaskovsky::WebApplication::AbstractPage#getRole()
 	 *
-	 * @see Vaskovsky::WebApplication::Page#getRole()
+	 * @see AVaskovsky::WebApplication::AbstractPage#getRole()
 	 */
 	protected function getRole()
 	{
@@ -35,9 +35,9 @@ class AccountPage extends Page
 		return "admin";
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#create()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#create()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#create()
+	 * @see AVaskovsky::WebApplication::CatalogPage#create()
 	 */
 	protected function create()
 	{
@@ -50,9 +50,9 @@ class AccountPage extends Page
 		];
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#sanitize()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#sanitize()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#sanitize()
+	 * @see AVaskovsky::WebApplication::CatalogPage#sanitize()
 	 */
 	protected function sanitize($x)
 	{
@@ -65,9 +65,9 @@ class AccountPage extends Page
 		];
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#validateUpdate()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#validateUpdate()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#validateUpdate()
+	 * @see AVaskovsky::WebApplication::CatalogPage#validateUpdate()
 	 */
 	protected function validateUpdate($x)
 	{
@@ -78,9 +78,9 @@ class AccountPage extends Page
 		}
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#validateInsert()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#validateInsert()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#validateInsert()
+	 * @see AVaskovsky::WebApplication::CatalogPage#validateInsert()
 	 */
 	protected function validateInsert($x)
 	{
@@ -90,41 +90,41 @@ class AccountPage extends Page
 		return $this->validateUpdate($x);
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#select()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#select()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#select()
+	 * @see AVaskovsky::WebApplication::CatalogPage#select()
 	 */
 	protected function select($x)
 	{
 		// x: sanitized model -null @CatalogPage
 		$pdo = $this->getPDO();
-		$sql = "select * from Account";
+		$sql = "select * from account";
 		return $pdo->query($sql);
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#get()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#get()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#get()
+	 * @see AVaskovsky::WebApplication::CatalogPage#get()
 	 */
 	protected function get($x)
 	{
 		// x: sanitized model -null @CatalogPage
 		$pdo = $this->getPDO();
-		$sql = "select * from Account where ";
+		$sql = "select * from account where ";
 		$sql .= "id = " . (int) $x->id;
 		return $pdo->query($sql)->fetchObject();
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#insert()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#insert()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#insert()
+	 * @see AVaskovsky::WebApplication::CatalogPage#insert()
 	 */
 	protected function insert($x)
 	{
 		// x: valid model -null @CatalogPage
 		$hash = $this->getAuthorization()->getPasswordHash($x->password);
 		$pdo = $this->getPDO();
-		$sql = "insert into Account (";
+		$sql = "insert into account (";
 		$sql .= "username, password, role_admin";
 		$sql .= ") values (";
 		$sql .= $pdo->quote($x->username) . ", ";
@@ -133,15 +133,15 @@ class AccountPage extends Page
 		return $pdo->exec($sql);
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#update()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#update()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#update()
+	 * @see AVaskovsky::WebApplication::CatalogPage#update()
 	 */
 	protected function update($x)
 	{
 		// x: valid model -null @CatalogPage
 		$pdo = $this->getPDO();
-		$sql = "update Account set ";
+		$sql = "update account set ";
 		if(empty($x->password)) {
 			$sql .= "username = " . $pdo->quote($x->username) . ", ";
 			$sql .= "role_admin = " . ($x->role_admin ? "true" : "false") . " ";
@@ -153,16 +153,16 @@ class AccountPage extends Page
 		return $pdo->exec($sql);
 	}
 	/**
-	 * @copydoc Vaskovsky::WebApplication::CatalogPage#delete()
+	 * @copydoc AVaskovsky::WebApplication::CatalogPage#delete()
 	 *
-	 * @see Vaskovsky::WebApplication::CatalogPage#delete()
+	 * @see AVaskovsky::WebApplication::CatalogPage#delete()
 	 */
 	protected function delete($x)
 	{
 		// x: sanitized model -null @CatalogPage
 		$pdo = $this->getPDO();
-		$sql = "delete from Account where id = " . (int) $x->id;
+		$sql = "delete from account where id = " . (int) $x->id;
 		return $pdo->exec($sql);
 	}
-	use \Vaskovsky\WebApplication\CatalogPage;
+	use \AVaskovsky\WebApplication\CatalogPage;
 }

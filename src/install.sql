@@ -18,14 +18,14 @@
 
 -- Accounts
 
-create table Account (
+create table account (
 	id serial not null primary key,
 	username text not null unique,
 	password text not null,
 	role_admin bool not null
 );
 
-insert into Account	(
+insert into account	(
 	username,
 	password,
 	role_admin
@@ -37,13 +37,13 @@ insert into Account	(
 
 -- Installation
 
-create table Install (
+create table install (
 	name text		not null primary key,
 	major_version	integer not null,
 	minor_version	integer not null
 );
 
-insert into Install (name, major_version, minor_version)
+insert into install (name, major_version, minor_version)
 values ('web-application-example',	1, 0);
 
 -- The End

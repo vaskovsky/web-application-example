@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this file. If not, see
 // <http://www.gnu.org/licenses/>
-namespace Vaskovsky\WebApplicationExample;
+namespace AVaskovsky\WebApplicationExample;
 /**
  * The home page.
  *
  * @author Alexey Vaskovsky
  */
-class HomePage extends Page
+class HomePage extends ApplicationPage
 {
 	/**
 	 * The GET action.
