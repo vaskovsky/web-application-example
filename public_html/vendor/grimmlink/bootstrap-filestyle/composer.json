@@ -1,0 +1,11 @@
+{
+  "name": "grimmlink/bootstrap-filestyle",
+  "description": "Shim repository for bootstrap-filestyle",
+  "keywords": [
+    "bootstrap",
+    "fileupload",
+    "filestyle"
+  ],
+  "homepage": "https://github.com/markusslima/bootstrap-filestyle#readme",
+  "license": "MIT"
+}
