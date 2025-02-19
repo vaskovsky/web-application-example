@@ -8,7 +8,7 @@
 		"vaskovsky/web-application": "3.*",
 		"twbs/bootstrap": "3.4.2",
 		"grimmlink/bootstrap-filestyle": "1.2.1",
-		"components/jquery": "3.1.1",
+		"components/jquery": "3.*",
 		"afarkas/html5shiv": "3.7.3",
 		"foxou33/respond": "@dev"
 	},
